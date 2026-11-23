@@ -144,13 +144,17 @@ entry has a `claims` list. A claim has `line`, `claim`, `evidence`,
 `kind` (production, test-gap, decision, maintenance), and `verdict`
 (supported, partial, unsupported, uncertain, duplicate).
 When applicable add `reference` for a predeclared ID, and
-`reported_priority` and `supported_priorities` for the published heading.
-Use an optional `issue` ID for a later discovery. Use the heading line for multiple
-atomic claims from that finding. Use judge-facing lines in the verdict and validate
-the mapping to original lines before scoring. Explain any report tally mismatch with
+`reported_priority` and `supported_priorities` for the published finding.
+Use an optional `issue` ID for a later discovery. Set `line` to the findings
+table row or standalone finding heading where the finding is published.
+Use that same line for every atomic claim from the finding. When proof
+appears separately, match it by finding ID and cite its location in
+`evidence` alongside the validating source or witness. Use judge-facing
+report lines in the verdict and validate the mapping to original lines
+before scoring. Explain any report tally mismatch with
 `tally_reconciliation` after reading the published findings.
 Reconcile the verdict list against every material assertion in the report.
-A heading tally can reconcile grouping and formatting differences. Each
+A finding tally can reconcile grouping and formatting differences. Each
 material assertion still needs its own verdict.
 Full credit requires a supported claim with an actionable trigger,
 consequence and evidence. Record relevant incomplete proof separately.
