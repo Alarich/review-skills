@@ -1,0 +1,43 @@
+---
+name: review-hard
+description: Review a complex or high-risk local change, GitHub pull request, or folder snapshot with three independent reviewers. Report evidence-linked findings with P0–P3 priorities. Review only.
+---
+
+# review-hard
+
+## Scope and delegation
+
+Read applicable project instructions and requirements once. Establish the target, baseline, and changed-file inventory. Include branch changes against the intended merge base, staged and unstaged changes, and relevant untracked files for local work. For a PR, use authorized tools to get its description, head, merge base, and changed-file list. For a folder, inventory the in-scope snapshot files, note its time, and include existing actionable issues even without Git metadata. Record missing or truncated scope. Mark the review partial if a material part of the agreed scope remains unavailable. Preserve source, Git state, and skill files. Use an immutable scoped snapshot when available. For live inputs, record the content identity of scoped source and requirements. Recheck it before delivery. Refresh affected evidence if inputs changed, or identify the older state and mark current coverage partial. Never repair or publish feedback without a separate request.
+
+Use the supplied report location or a unique persistent directory under `~/.local/state/review-hard/runs/`. If that location is unavailable, use a writable persistent artifact directory outside the review target, or an authorized workspace artifact directory excluded from the source inventory. Keep the output path outside the source inventory. If the requested path collides with source or an existing report, choose a fresh destination unless the user authorized replacing that existing report outside the source inventory. Report the resolved path.
+
+Launch three independent reviewers through the host's delegation tool. Assign Recovery, Round Trip, and Remove a Step to distinct reviewers, one per method. Include the full instructions for each assigned [method](references/reviewers.md) in its brief. Give each reviewer a fresh factual brief with scope, baseline, changed inventory, applicable requirements, its assignment, the [priority rubric](references/grading.md), the full review instructions below, and tool limits. Use parallel starts where available and schedule waves when necessary. Keep suspected findings, prior reports, and all other submissions out of the briefs. Tell each reviewer to work independently, avoid peer messaging, sibling submissions and shared review notes, and return its complete submission without delegating again. Record the method, reviewer ID, and completion for each.
+
+Prefer a high-quality code-review model for each reviewer at the host's standard reasoning effort, such as `medium` where that is the available label. Follow any explicit model or effort choice from the user. If the host cannot select these settings for a reviewer, use its configured settings and report only the settings the host verifies.
+
+Use the host's empty-history option or a documented fresh-task mode. Establish the user or host deadline before dispatch. If neither sets one, choose a finite wait based on scope and record it. If Codex exposes `fork_turns`, pass `fork_turns="none"`. If no independent subagent can start, report the review as blocked and stop. A complete review requires every assigned reviewer to start independently and deliver a full final submission. When only some reviewers deliver, or reviewer isolation cannot be verified, mark coverage partial and identify the affected assignments.
+
+## Review instructions
+
+Inspect the complete change or the in-scope snapshot in manageable sections. For each materially changed outcome, trace the governing input or requirement, the implementation, and the first consumer that relies on the result. Include shipped templates, scripts, config, documentation and monitoring when they define or consume the changed behavior. Check a plausible normal case and the relevant failure or boundary conditions. Continue through the agreed scope after finding solid issues.
+
+When version skew or rollback is relevant to a changed persisted or wire
+contract, inspect the applicable old and new readers and writers. Start
+from a concrete retained record or wire payload, as applicable. Trace each
+affected entry point through
+its observable outcome, including the state left after partial failure.
+Preserve separately proved consequences even when they share a cause.
+
+Record any distinct issue with a supported trigger, concrete consequence, precise location, and a targeted action. Small proven defects, inaccurate diagnostics, and bounded avoidable work can earn P3. Assign priority after establishing the finding. For a changeset, include an existing behavior when the change gives it a new material consequence or directly depends on it. Capture each material standalone test gap by the specific regression that can pass; retain independent gaps even when grouped in one note. Record conflicting requirements as a decision with evidence on both sides.
+
+For each finding return priority, exact evidence coordinates, trigger, consequence, short proof, and action. Give the inspected file path, revision or snapshot, and line or range. For a PR, also return the relevant changed path, diff side, and line or range for comment placement, when available. The evidence and placement can point to different files. Apply the same finding criteria when inline placement is unavailable. Use inspection proof when it settles the claim. If permitted, use a focused check when an unanswered behavior could change the finding. Distinguish executed checks from counterfactuals. Include command, working directory, relevant input and environment, observed result, and exit status in any executed proof. Finish with specific material paths left unchecked and any limitations.
+
+## Coordinator verification and delivery
+
+Wait for running reviewers and complete all scheduled waves. Collect each reviewer's full final submission before consolidating. Progress messages and a polling timeout do not establish a terminal failure. If a required reviewer fails, its final submission is genuinely unavailable, or the review deadline is reached, report which handoffs remain missing and the observed reason. Identify cutoff separately from terminal failure. If no reviewer submission is available, stop after reporting that failure. Otherwise, consolidate the available submissions and independently verified coordinator findings. The partial report and chat must state missing reviewers and material coverage limits. Verify evidence for P0/P1 findings and disputed conclusions, and check up to two consequential uncovered paths where an independent check could change the outcome. Reuse reviewers’ proof and source reads. Escalate a confirmed P0 immediately. Keep new discoveries under their true attribution. Flag remaining coverage limits. Merge duplicate effects and preserve distinct mechanisms and actions. Briefly explain any material rejected or unresolved claim in the report.
+
+Write one Markdown `report.md`. Start with scope, reviewed revision, Complete/Partial status, reviewer completion, and P0–P3 tally. Put every confirmed finding in one table sorted from P0 to P3. Use ID, priority, exact code link, trigger and impact, and recommended action. Count each finding once. Add a PR placement column for a PR review. Key short proof sections to the same finding IDs. Retain material evidence, decisions, test gaps and coverage limits. Follow the [evidence and PR placement rules](references/links.md).
+
+In chat, deliver the findings table, material decisions, test gaps, limits, and the absolute report link. Keep detailed proof in the report.
+
+If no report can be written, give the findings and evidence in chat and state the file-delivery failure. Only link to a report that exists.
