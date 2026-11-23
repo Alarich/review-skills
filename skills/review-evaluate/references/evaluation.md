@@ -74,8 +74,9 @@ permission scopes, isolated briefs, request and handoff traces, reports,
 and qualification receipts. Keep token counts when a verified price is
 unavailable.
 
-For an independent-review arm, start each reviewer in a fresh context
-and pass a self-contained brief. Verify the recorded launch mode and reviewer
+For an independent-review arm, use the current host's delegation tool
+with its empty-history option or documented fresh-task mode. Pass a
+self-contained brief. Verify the recorded launch options and reviewer
 history for inherited conversation, tool calls, or outputs before
 accepting the arm. An independent reviewer ID verifies delegation alone.
 Preserve an inherited-context attempt as diagnostic evidence and exclude
