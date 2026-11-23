@@ -15,18 +15,13 @@ Launch three independent reviewers through the host's delegation tool. Assign Re
 
 Prefer a high-quality code-review model for each reviewer at the host's standard reasoning effort, such as `medium` where that is the available label. Follow any explicit model or effort choice from the user. If the host cannot select these settings for a reviewer, use its configured settings and report only the settings the host verifies.
 
-Use the host's empty-history option or a documented fresh-task mode. Establish the user or host deadline before dispatch. If neither sets one, choose a finite wait based on scope and record it. If Codex exposes `fork_turns`, pass `fork_turns="none"`. If no independent subagent can start, report the review as blocked and stop. A complete review requires every assigned reviewer to start independently and deliver a full final submission. When only some reviewers deliver, or reviewer isolation cannot be verified, mark coverage partial and identify the affected assignments.
+Start each reviewer in a fresh context with no inherited conversation history. Record a finite review deadline before dispatch, using any user or host limit. If no independent subagent can start, report the review as blocked and stop. A complete review requires every assigned reviewer to start independently and deliver a full final submission. When only some reviewers deliver, or reviewer isolation cannot be verified, mark coverage partial and identify the affected assignments.
 
 ## Review instructions
 
 Inspect the complete change or the in-scope snapshot in manageable sections. For each materially changed outcome, trace the governing input or requirement, the implementation, and the first consumer that relies on the result. Include shipped templates, scripts, config, documentation and monitoring when they define or consume the changed behavior. Check a plausible normal case and the relevant failure or boundary conditions. Continue through the agreed scope after finding solid issues.
 
-When version skew or rollback is relevant to a changed persisted or wire
-contract, inspect the applicable old and new readers and writers. Start
-from a concrete retained record or wire payload, as applicable. Trace each
-affected entry point through
-its observable outcome, including the state left after partial failure.
-Preserve separately proved consequences even when they share a cause.
+When version skew or rollback is relevant to a changed persisted or wire contract, inspect the applicable old and new readers and writers. Start from a concrete retained record or wire payload, as applicable. Trace each affected entry point through its observable outcome, including the state left after partial failure. Preserve separately proved consequences even when they share a cause.
 
 Record any distinct issue with a supported trigger, concrete consequence, precise location, and a targeted action. Small proven defects, inaccurate diagnostics, and bounded avoidable work can earn P3. Assign priority after establishing the finding. For a changeset, include an existing behavior when the change gives it a new material consequence or directly depends on it. Capture each material standalone test gap by the specific regression that can pass; retain independent gaps even when grouped in one note. Record conflicting requirements as a decision with evidence on both sides.
 

@@ -74,11 +74,9 @@ permission scopes, isolated briefs, request and handoff traces, reports,
 and qualification receipts. Keep token counts when a verified price is
 unavailable.
 
-For an independent-review arm, use the host's explicit empty-history
-option where available. In Codex harnesses that expose
-`collaboration.spawn_agent` with `fork_turns`, set `fork_turns="none"`
-and pass a self-contained brief. Check the recorded spawn options and
-reviewer history for inherited coordinator tool calls or outputs before
+For an independent-review arm, start each reviewer in a fresh context
+and pass a self-contained brief. Verify the recorded launch mode and reviewer
+history for inherited conversation, tool calls, or outputs before
 accepting the arm. An independent reviewer ID verifies delegation alone.
 Preserve an inherited-context attempt as diagnostic evidence and exclude
 it from the fresh-context comparison.
